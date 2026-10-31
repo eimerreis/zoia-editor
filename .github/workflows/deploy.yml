@@ -33,6 +33,9 @@ jobs:
 
   deploy:
     needs: check
+    # Public repository: only main reaches the self-hosted Mac mini runner (the production environment
+    # also allows main only, and fork pull requests need approval before any workflow runs).
+    if: github.ref == 'refs/heads/main'
     runs-on: self-hosted
     environment: production
     permissions:
